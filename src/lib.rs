@@ -1,4 +1,3 @@
-use std::pin::Pin;
 use std::time::Duration;
 
 use futures::executor::block_on;
@@ -30,13 +29,13 @@ pub fn timer_future(){
 mod pin;
 use pin::Test;
 pub fn pin_lab(){
-    let mut test1 = Test::new("test1");
+    let test1 = Test::new("test1");
     // let mut test1 = unsafe {
     //     Pin::new_unchecked(&mut test1)
     // };
     // Test::init(test1.as_mut());
 
-    let mut test2 = Test::new("test2");
+    let test2 = Test::new("test2");
     // let mut test2 = unsafe {
     //     Pin::new_unchecked(&mut test2)
     // };

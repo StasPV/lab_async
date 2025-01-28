@@ -19,11 +19,11 @@ impl Test{
         boxed
     }
 
-    pub fn init(self: Pin<&mut Self>){
-        let self_ptr: *const String = &self.a;
-        let this = unsafe{ self.get_unchecked_mut()};
-        this.b = self_ptr;
-    }
+    // pub fn init(self: Pin<&mut Self>){
+    //     let self_ptr: *const String = &self.a;
+    //     let this = unsafe{ self.get_unchecked_mut()};
+    //     this.b = self_ptr;
+    // }
 
     pub fn a(self: Pin<&Self>)->&str{
         &self.get_ref().a
