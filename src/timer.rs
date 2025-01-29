@@ -3,7 +3,7 @@ use std::pin::Pin;
 use std::task::Poll;
 use std::task::Context;
 
-use futures::{future::BoxFuture, task::{waker_ref, ArcWake}};
+use futures::{future::{BoxFuture, FutureExt}, task::{waker_ref, ArcWake}};
 
 pub struct TimerFuture{
     shared_state: Arc<Mutex<SharedState>>,
@@ -72,7 +72,8 @@ pub fn new_executor_and_spawner()->(Executor, Spawner){
 
 impl Spawner{
     pub fn spawn(&self, future: impl Future<Output = ()> + 'static + Send){
-        let future = Box::pin(future); // в оригинале здесь future.boxed() но такой метод не поддерживается
+        let future = future.boxed(); 
+        
         let task = Task { future: Mutex::new(Some(future)), task_sender: self.task_sender.clone(), };
         let task = Arc::new(task);
 

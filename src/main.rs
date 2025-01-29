@@ -1,6 +1,6 @@
 use lab_async as lba;
 
 fn main() {
-    lba::pin_lab();
+    lba::timer_future();
 }
 

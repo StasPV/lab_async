@@ -12,11 +12,11 @@ async fn hello_world() {
 }
 
 mod timer;
-use timer::TimerFuture;
 use timer::new_executor_and_spawner;
-pub fn timer_future(){
+use timer::TimerFuture;
+pub fn timer_future() {
     let (execcutor, spawner) = new_executor_and_spawner();
-    spawner.spawn(async{
+    spawner.spawn(async {
         println!("howdy!");
         TimerFuture::new(Duration::new(2, 0)).await;
         println!("Done!");
@@ -28,7 +28,7 @@ pub fn timer_future(){
 
 mod pin;
 use pin::Test;
-pub fn pin_lab(){
+pub fn pin_lab() {
     let test1 = Test::new("test1");
     // let mut test1 = unsafe {
     //     Pin::new_unchecked(&mut test1)
@@ -46,10 +46,16 @@ pub fn pin_lab(){
     // std::mem::swap(test1.get_mut(),  test2.get_mut());
 }
 
+
 #[cfg(test)]
-mod lab_tests{
+#[warn(unused_imports)]
+mod lab_tests {
+    use crate::*;
+    
     #[test]
-    fn dummy_test(){
-        assert_eq!(1,1);
+    fn dummy_test() {
+        println!("dummy_test начался");
+        assert_eq!(1, 1);
     }
+    
 }
